@@ -1,5 +1,5 @@
 node{
-    def app
+    def builtImage
     
   environment {
     registry = "vishnuskrishnan/docker-test"
@@ -13,7 +13,7 @@ node{
     
     stage('Build image'){
         // docker.withregistery('','docker-hub-credentials')
-         dbImage = docker.build("vishnuskrishnan/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
+         builtImage = docker.build("vishnuskrishnan/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
     }
     
     
@@ -26,8 +26,9 @@ node{
 
         docker.withRegistry('', 'docker-hub-credentials') {
             sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-                    docker.push("${env.BUILD_NUMBER}")
-                    docker.push("latest")
+            builtImage.push("${env.BUILD_NUMBER}")
+                //   builtImage.push("${env.BUILD_NUMBER}")
+                    builtImage.push("latest")
         }
         }
 
