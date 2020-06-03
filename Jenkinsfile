@@ -22,7 +22,7 @@ node{
     //         echo "testing "
     // }
     stage('push image'){
-        withCredentials([usernamePassword( credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+        // withCredentials([usernamePassword( credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 
         docker.withRegistry('', registryCredential) {
             // sh "docker login -u ${USERNAME} -p ${PASSWORD}"
@@ -30,7 +30,7 @@ node{
                 //   builtImage.push("${env.BUILD_NUMBER}")
                     // builtImage.push("latest")
         }
-        }
+        // }
 
       
         // docker.withregistery('https://registry.hub.docker.com','docker-hub-credentials'){
