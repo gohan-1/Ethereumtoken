@@ -7,7 +7,9 @@ node{
     }
     
     stage('Build image'){
+        steps{
         app=docker.build('vishnuskrishnan/token')
+    }
     }
     
     // stage('test image'){
