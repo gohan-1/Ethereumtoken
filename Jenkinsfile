@@ -21,6 +21,7 @@ node{
         customImage.push()
     // def customImage = docker.build("my-image:${env.BUILD_ID}", "-f ${dockerfile} ./dockerfiles") 
     }
+    }
     
     
     // stage('test image'){
