@@ -1,6 +1,6 @@
 node{
     def app
-    {
+    
   environment {
     registry = "vishnuskrishnan/docker-test"
     registryCredential = ‘docker-hub-credentials’
