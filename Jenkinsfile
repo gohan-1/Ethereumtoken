@@ -24,11 +24,11 @@ node{
     stage('push image'){
         withCredentials([usernamePassword( credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 
-        docker.withRegistry('', 'docker-hub-credentials') {
-            sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-            builtImage.push("${env.BUILD_NUMBER}")
+        docker.withRegistry('', registryCredential) {
+            // sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+            builtImage.push()
                 //   builtImage.push("${env.BUILD_NUMBER}")
-                    builtImage.push("latest")
+                    // builtImage.push("latest")
         }
         }
 
