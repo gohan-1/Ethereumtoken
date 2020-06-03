@@ -12,7 +12,14 @@ node{
     }
     
     stage('Build image'){
-    def customImage = docker.build("my-image:${env.BUILD_ID}", "-f ${dockerfile} ./dockerfiles") 
+
+         docker.withRegistry('vishnuskrishnan/docker-test', 'docker-hub-credentials') {
+
+        def customImage = docker.build("my-image:${env.BUILD_ID}")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
+    // def customImage = docker.build("my-image:${env.BUILD_ID}", "-f ${dockerfile} ./dockerfiles") 
     }
     
     
