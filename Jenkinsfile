@@ -1,5 +1,12 @@
 node{
     def app
+    //  docker.withRegistry('https://registry.example.com', 'credentials-id') {
+
+        def customImage = docker.build("my-image:${env.BUILD_ID}","docker-hub-credentials")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
+    }
     
   environment {
     registry = "vishnuskrishnan/docker-test"
@@ -11,18 +18,10 @@ node{
         checkout scm
     }
     
-    stage('Build image'){
-
-         docker.withRegistry('vishnuskrishnan/docker-test', 'docker-hub-credentials') {
-
-        def customImage = docker.build("my-image:${env.BUILD_ID}")
-
-        /* Push the container to the custom Registry */
-        customImage.push()
+    // stage('Build image'){
     // def customImage = docker.build("my-image:${env.BUILD_ID}", "-f ${dockerfile} ./dockerfiles") 
-    }
-    }
-    
+    // }
+    // }
     
     // stage('test image'){
     //     app.inside(
