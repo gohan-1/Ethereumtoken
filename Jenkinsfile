@@ -12,7 +12,7 @@ node{
     
     stage('test image'){
         app.inside(
-            sh 'echo ("testing ")'
+            // sh 'echo ("testing ")'
     }
     stage('push image'){
         
