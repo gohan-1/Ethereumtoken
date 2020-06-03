@@ -23,7 +23,7 @@ node{
     // }
     stage('push image'){
       
-        // docker.withregistery('https://github.com/gohan-1/Ethereumtoken.git','docker-hub-credentials')
+        docker.withregistery('https://registry.hub.docker.com','docker-hub-credentials')
         docker.push("${env.BUILD_NUMBER}")
         docker.push("latest")
       }
