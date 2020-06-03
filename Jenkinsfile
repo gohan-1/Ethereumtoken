@@ -1,5 +1,10 @@
 node{
     def app
+    {
+  environment {
+    registry = "vishnuskrishnan/docker-test"
+    registryCredential = ‘docker-hub-credentials’
+  }
     
     stage('clone repositry'){
         
@@ -8,8 +13,9 @@ node{
     
     stage('Build image'){
         steps{
-        app=docker.build('vishnuskrishnan/token')
-    }
+        script {
+          docker.build registry + ":$BUILD_NUMBER"
+        }
     }
     
     // stage('test image'){
