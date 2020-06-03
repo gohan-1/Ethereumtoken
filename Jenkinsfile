@@ -10,10 +10,10 @@ node{
         app=docker.build('vishnuskrishnan/token')
     }
     
-    stage('test image'){
-        app.inside(
-            echo "testing "
-    }
+    // stage('test image'){
+    //     app.inside(
+    //         echo "testing "
+    // }
     stage('push image'){
         
         docker.withregistery('https://github.com/gohan-1/Ethereumtoken.git','docker-hub-credentials')
