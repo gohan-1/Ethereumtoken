@@ -22,11 +22,19 @@ node{
     //         echo "testing "
     // }
     stage('push image'){
-      
-        docker.withregistery('https://registry.hub.docker.com','docker-hub-credentials'){
-            dbImage = docker.build("vishnuskrishnan/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
-            dbImage.push()
+        withCredentials([usernamePassword( credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+
+        docker.withRegistry('', 'docker-hub-credentials') {
+            sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                    docker.push("${env.BUILD_NUMBER}")
+                    docker.push("latest")
         }
+
+      
+        // docker.withregistery('https://registry.hub.docker.com','docker-hub-credentials'){
+        //     dbImage = docker.build("vishnuskrishnan/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
+        //     dbImage.push()
+        // }
         // docker.push("${env.BUILD_NUMBER}")
         // docker.push("latest")
       }
