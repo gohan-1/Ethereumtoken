@@ -17,6 +17,7 @@ node{
           docker.build registry + ":$BUILD_NUMBER"
         }
     }
+    }
     
     // stage('test image'){
     //     app.inside(
