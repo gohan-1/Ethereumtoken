@@ -23,7 +23,7 @@ node{
     // }
     stage('push image'){
       
-        docker.withregistery('https://hub.docker.com/','docker-hub-credentials')
+        docker.withregistery('https://registry.hub.docker.io','docker-hub-credentials')
         docker.push("${env.BUILD_NUMBER}")
         docker.push("latest")
       }
