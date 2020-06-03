@@ -12,7 +12,7 @@ node{
     }
     
     stage('Build image'){
-        docker.build("vishnuskrishnan/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
+         dbImage = docker.build("vishnuskrishnan/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
     }
     
     
@@ -23,8 +23,8 @@ node{
     stage('push image'){
       
         docker.withregistery('https://github.com/gohan-1/Ethereumtoken.git','docker-hub-credentials')
-        docker.push("${env.BUILD_NUMBER}")
-        docker.push("latest")
+        dbImage.push()
+        // docker.push("latest")
       }
         
 
