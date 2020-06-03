@@ -12,7 +12,7 @@ node{
     }
     
     stage('Build image'){
-        docker.withregistery('','docker-hub-credentials')
+        // docker.withregistery('','docker-hub-credentials')
          dbImage = docker.build("vishnuskrishnan/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
     }
     
