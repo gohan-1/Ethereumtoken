@@ -12,10 +12,7 @@ node{
     }
     
     stage('Build image'){
-        steps{
-        script {
-          docker.build registry + ":$BUILD_NUMBER"
-        }
+    def customImage = docker.build("my-image:${env.BUILD_ID}", "-f ${dockerfile} ./dockerfiles") 
     }
     }
     
