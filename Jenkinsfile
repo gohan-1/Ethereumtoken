@@ -12,12 +12,9 @@ node{
     }
     
     stage('Build image'){
-        steps{
-         script {
-          docker.build registry + ":$BUILD_NUMBER"
-        }
+        docker.build("vishnuskrishnan/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
     }
-    }
+    
     
     // stage('test image'){
     //     app.inside(
